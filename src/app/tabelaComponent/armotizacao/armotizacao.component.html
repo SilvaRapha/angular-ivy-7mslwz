@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+    <div class="mb-3">
+      <label class="form-label">Capital (R$)</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="c"
+        placeholder="100"
+      />
+      <br />
+      <br />
+      <label class="form-label">Juros (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="i"
+        placeholder="0.01"
+      />
+      <br />
+      <br />
+      <label class="form-label">Tempo (meses)</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="t"
+        placeholder="5"
+      />
+    </div>
+    <br /><br />
+    <table class="table">
+      <tr>
+        <th>Mês</th>
+        <th>Valor</th>
+        <th>Juros</th>
+        <th>Amortização</th>
+        <th>Parcela</th>
+        <th>Saldo</th>
+      </tr>
+      <tr *ngFor="let i of getPeriodo()">
+        <td>{{ i }}</td>
+        <td>{{ getBalanceamento(i - 1) | currency }}</td>
+        <td>{{ getInteresse(i - 1) | currency }}</td>
+        <td>{{ getAmortizacao(i - 1) | currency }}</td>
+        <td>{{ getSplit() | currency }}</td>
+        <td>{{ getBalanceamento(i) | currency }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
